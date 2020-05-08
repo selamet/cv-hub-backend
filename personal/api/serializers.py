@@ -14,6 +14,11 @@ class CreatePersonalDetailSerializer(serializers.ModelSerializer):
         model = PersonalDetail
         exclude = ['created', 'modified']
 
+class CreateEducationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Education
+        exclude = ['created', 'modified']
+
 
 class CreateProfileSerializer(serializers.ModelSerializer):
     class Meta:
