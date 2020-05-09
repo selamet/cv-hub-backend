@@ -7,6 +7,8 @@ from personal.api.serializers import CreatePersonalDetailSerializer, PersonalDet
     CreateReferenceSerializer, CreateHobbySerializer, CreateAchievementSerializer, CreateCourseSerializer, \
     CreatePublicationSerializer, CreateEducationSerializer
 
+from drf_multiple_model.views import ObjectMultipleModelAPIView
+
 
 class PersonalDetailListAPIView(ListAPIView):
     queryset = PersonalDetail.objects.all()
@@ -116,3 +118,18 @@ class PublicationListAPIView(ListAPIView):
 class PublicationCreateAPIView(CreateAPIView):
     queryset = Publication.objects.all()
     serializer_class = CreatePublicationSerializer
+
+
+class PersonalHistoryListAPIView(ObjectMultipleModelAPIView):
+    querylist = [
+        {'queryset': Profile.objects.all(), 'serializer_class': CreateProfileSerializer},
+        {'queryset': Education.objects.all(), 'serializer_class': CreateEducationSerializer},
+        {'queryset': Experience.objects.all(), 'serializer_class': CreateExperienceSerializer},
+        {'queryset': Ability.objects.all(), 'serializer_class': CreateAbilitySerializer},
+        {'queryset': Language.objects.all(), 'serializer_class': CreateLanguageSerializer},
+        {'queryset': Reference.objects.all(), 'serializer_class': CreateReferenceSerializer},
+        {'queryset': Hobby.objects.all(), 'serializer_class': CreateHobbySerializer},
+        {'queryset': Course.objects.all(), 'serializer_class': CreateCourseSerializer},
+        {'queryset': Achievement.objects.all(), 'serializer_class': CreateAchievementSerializer},
+        {'queryset': Publication.objects.all(), 'serializer_class': CreatePublicationSerializer},
+    ]
